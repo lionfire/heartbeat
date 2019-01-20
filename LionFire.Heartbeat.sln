@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.271
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LionFire.Heartbeat.Api.Host", "src\LionFire.Heartbeat.Api.Host\LionFire.Heartbeat.Api.Host.csproj", "{B83049D0-A263-4F09-ADA3-0466FFEF2C78}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LionFire.Heartbeat.Api", "src\LionFire.Heartbeat.Api\LionFire.Heartbeat.Api.csproj", "{43A649F1-8EB5-4C99-81F0-B81DD9A4442B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LionFire.Heartbeat", "src\LionFire.Heartbeat\LionFire.Heartbeat.csproj", "{A7A508FF-16AD-4C75-AB8A-3E264D2A19DA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{6DCD2903-7964-4F04-B763-383F59A53595}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LionFire.Heartbeat.Samples.HostedService", "samples\LionFire.Heartbeat.Samples.HostedService\LionFire.Heartbeat.Samples.HostedService.csproj", "{F4EDFEC5-9B82-4012-A45D-C353D6CF824F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LionFire.Heartbeat.Samples.Publisher", "samples\LionFire.Heartbeat.Samples.Publisher\LionFire.Heartbeat.Samples.Publisher.csproj", "{EE6C3DA3-8130-453A-B399-29ADB8C33B38}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B83049D0-A263-4F09-ADA3-0466FFEF2C78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B83049D0-A263-4F09-ADA3-0466FFEF2C78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B83049D0-A263-4F09-ADA3-0466FFEF2C78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B83049D0-A263-4F09-ADA3-0466FFEF2C78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43A649F1-8EB5-4C99-81F0-B81DD9A4442B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43A649F1-8EB5-4C99-81F0-B81DD9A4442B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43A649F1-8EB5-4C99-81F0-B81DD9A4442B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43A649F1-8EB5-4C99-81F0-B81DD9A4442B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7A508FF-16AD-4C75-AB8A-3E264D2A19DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7A508FF-16AD-4C75-AB8A-3E264D2A19DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7A508FF-16AD-4C75-AB8A-3E264D2A19DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7A508FF-16AD-4C75-AB8A-3E264D2A19DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4EDFEC5-9B82-4012-A45D-C353D6CF824F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4EDFEC5-9B82-4012-A45D-C353D6CF824F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4EDFEC5-9B82-4012-A45D-C353D6CF824F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4EDFEC5-9B82-4012-A45D-C353D6CF824F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE6C3DA3-8130-453A-B399-29ADB8C33B38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE6C3DA3-8130-453A-B399-29ADB8C33B38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE6C3DA3-8130-453A-B399-29ADB8C33B38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE6C3DA3-8130-453A-B399-29ADB8C33B38}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F4EDFEC5-9B82-4012-A45D-C353D6CF824F} = {6DCD2903-7964-4F04-B763-383F59A53595}
+		{EE6C3DA3-8130-453A-B399-29ADB8C33B38} = {6DCD2903-7964-4F04-B763-383F59A53595}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {579FA637-26CD-4BF8-A32F-609750751E2B}
+	EndGlobalSection
+EndGlobal
