@@ -15,15 +15,17 @@ using Timer = System.Timers.Timer;
 
 namespace LionFire.Heartbeat
 {
-
-    public class HeartbeatServer
-    {
-        public HeartbeatConfigFromServer ConfigFromServer { get; set; }
-    }
+    //public class HeartbeatServer
+    //{
+    //    public HeartbeatConfigFromServer ConfigFromServer { get; set; }
+    //}
 
     public class HeartbeatSender : IHostedService
     {
-        public static double DefaultIntervalInMilliseconds { get; set; } = 60000;
+        /// <summary>
+        /// In seconds
+        /// </summary>
+        public static double DefaultInterval { get; set; } = 60;
 
         #region Identity
 
@@ -58,14 +60,15 @@ namespace LionFire.Heartbeat
 
         #endregion
 
-        public double IntervalInMilliseconds
+        public double IntervalInMilliseconds => Interval * 1000;
+        public double Interval
         {
             get
             {
                 var configValue = options.CurrentValue.Interval;
                 if (configValue == 0)
                 {
-                    return DefaultIntervalInMilliseconds;
+                    return DefaultInterval;
                 }
                 else if (configValue < 0)
                 {
@@ -73,7 +76,7 @@ namespace LionFire.Heartbeat
                 }
                 else
                 {
-                    return configValue * 1000;
+                    return configValue;
                 }
             }
         }
@@ -101,6 +104,7 @@ namespace LionFire.Heartbeat
                 timer = new Timer(interval);
                 timer.Elapsed += Timer_Elapsed;
                 timer.Enabled = true;
+                logger.LogInformation($"Sending heartbeat every {Interval} seconds");
             }
         }
 
@@ -143,9 +147,9 @@ namespace LionFire.Heartbeat
             var heartbeatInfo = new HeartbeatInfo()
             {
                 InstanceId = InstanceId,
-                ProgramName = o.ProgramName,
+                ProgramName = o.ProgramName ??  HeartbeatOptions.DefaultProgramName,
                 HealthCheckUri = o.HealthCheckUri,
-                HeartbeatIntervalInSeconds = o.HeartbeatIntervalInSeconds,
+                HeartbeatInterval = Interval,
                 HostName = o.HostName ?? Environment.MachineName,
                 InstanceName = o.InstanceName,
                 //SupportsHealthCheck // TODO
@@ -170,7 +174,7 @@ namespace LionFire.Heartbeat
             }
             catch (Exception ex)
             {
-                logger.LogError(ex, "Failed to send heartbeat info to " + server);
+                logger.LogError(ex, "Failed to send heartbeat info to " + server.Url);
             }
 
             var responseString = await response.Content.ReadAsStringAsync();

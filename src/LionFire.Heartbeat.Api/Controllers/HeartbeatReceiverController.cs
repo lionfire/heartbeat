@@ -1,6 +1,7 @@
 ﻿using LionFire.Heartbeat;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
+using Microsoft.Extensions.Options;
 using System;
 using System.Threading.Tasks;
 
@@ -11,9 +12,11 @@ namespace LionFire.Heartbeat
     public class HeartbeatReceiverController : ControllerBase
     {
         private HeartbeatTracker tracker;
+        private IOptionsMonitor<HeartbeatTrackerOptions> trackerOptions;
 
-        public HeartbeatReceiverController(HeartbeatTracker tracker)
+        public HeartbeatReceiverController(IOptionsMonitor<HeartbeatTrackerOptions> trackerOptions, HeartbeatTracker tracker)
         {
+            this.trackerOptions = trackerOptions;
             this.tracker = tracker;
         }
 
@@ -34,8 +37,16 @@ namespace LionFire.Heartbeat
         {
             try
             {
-                var response = new HeartbeatResponse();
-                response.infoRequested = tracker.OnHeartbeat(heartbeat).Info == null;
+                
+                var response = tracker.OnHeartbeat(heartbeat);
+                if (response.infoRequested)
+                {
+                    response.config = new HeartbeatConfigFromServer
+                    {
+                        SendAtIntervals = true,
+                        MinInterval = trackerOptions.CurrentValue.MinHeartbeatInterval,
+                    };
+                }
                 return Ok(response);
             }
             catch(ArgumentNullException)

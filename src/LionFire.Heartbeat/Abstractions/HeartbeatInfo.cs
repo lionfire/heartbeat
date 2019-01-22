@@ -11,7 +11,7 @@
         /// </summary>
         public string InstanceId { get; set; }
 
-        public int HeartbeatIntervalInSeconds { get; set; }
+        public double HeartbeatInterval { get; set; }
         
         public string HealthCheckUri { get; set; }
 

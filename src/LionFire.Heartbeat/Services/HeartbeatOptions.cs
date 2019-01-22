@@ -27,7 +27,10 @@ namespace LionFire.Heartbeat.Options
             {
                 if (defaultProgramName == null)
                 {
-                    defaultProgramName = System.Reflection.Assembly.GetEntryAssembly().FullName;
+                    var n = System.Reflection.Assembly.GetEntryAssembly().FullName;
+                    n = n.Split(new char[] { ',' }, 2)[0];
+
+                    defaultProgramName = n;
                 }
                 return defaultProgramName;
             }

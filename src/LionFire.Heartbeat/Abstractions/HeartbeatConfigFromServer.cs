@@ -15,12 +15,12 @@
         /// <summary>
         /// If regularly sending heartbeats, do not send any less frequently than this number of seconds. (Does not affect change detection.)
         /// </summary>
-        public int MaxIntervalInSeconds { get; set; }
+        public double MaxInterval { get; set; }
 
         /// <summary>
         /// If regularly sending heartbeats, do not send any more frequently than this number of seconds. (Does not affect change detection.)
         /// </summary>
-        public int MinIntervalInSeconds { get; set; }
+        public double MinInterval { get; set; }
 
     }
 }
