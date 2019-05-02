@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
-    <RootNamespace>LionFire.Monitoring.Heartbeat</RootNamespace>
+    <RootNamespace>LionFire.Heartbeat</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -11,6 +11,7 @@
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="NPushover" Version="1.2.1" />
+    <PackageReference Include="WebApiContrib.Core" Version="2.1.0" />
   </ItemGroup>
 
   <ItemGroup>

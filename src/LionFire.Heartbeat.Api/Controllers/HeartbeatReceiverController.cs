@@ -1,15 +1,16 @@
 ﻿using LionFire.Heartbeat;
+using LionFire.Heartbeat.Api;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Options;
 using System;
 using System.Threading.Tasks;
 
-namespace LionFire.Heartbeat
+namespace LionFire.Heartbeat.Api
 {
-    [Route("api/heartbeat")]
+    [Route("heartbeat")]
     [ApiController]
-    public class HeartbeatReceiverController : ControllerBase
+    public class HeartbeatReceiverController : ControllerBase, IPublicApi
     {
         private HeartbeatTracker tracker;
         private IOptionsMonitor<HeartbeatTrackerOptions> trackerOptions;

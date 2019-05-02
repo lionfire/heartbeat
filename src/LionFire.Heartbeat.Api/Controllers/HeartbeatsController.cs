@@ -6,9 +6,9 @@ using System.Text;
 
 namespace LionFire.Heartbeat.Api.Controllers
 {
-    [Route("api/{controller}")]
+    [Route("{controller}")]
     [ApiController]
-    public class HeartbeatsController : ControllerBase
+    public class HeartbeatsController : ControllerBase, IAdminApi
     {
         private readonly HeartbeatTracker tracker;
 
