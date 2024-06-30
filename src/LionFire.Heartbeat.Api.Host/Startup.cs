@@ -14,10 +14,10 @@ using LionFire.Monitoring.Heartbeat.Alerters;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using WebApiContrib.Core;
@@ -44,12 +44,12 @@ namespace LionFire.Monitoring.Heartbeat.Api.Host
 
         }
 
-        public void Configure(IApplicationBuilder a, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder a, IWebHostEnvironment env)
         {
             a.UseBranchWithServices("/api", services =>
             {
                 services.AddMvc()
-                    .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                    //.SetCompatibilityVersion(CompatibilityVersion.Version_3_0)
                     .ConfigureApplicationPartManager(manager =>
                     {
                         manager.FeatureProviders.Clear();
@@ -89,7 +89,7 @@ namespace LionFire.Monitoring.Heartbeat.Api.Host
                     }
                 });
 
-                app.UseMvc();
+                //app.UseMvc();
                 //app.UseExceptionHandler()
             });
 
@@ -101,8 +101,9 @@ namespace LionFire.Monitoring.Heartbeat.Api.Host
                 services.AddDotNetify();
 #endif
 
-                services.AddMvc()
-                    .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                services
+                    .AddRazorPages()
+                    //.SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
                     .ConfigureApplicationPartManager(manager =>
                     {
                         manager.FeatureProviders.Clear();
@@ -142,8 +143,17 @@ namespace LionFire.Monitoring.Heartbeat.Api.Host
                 app.UseDotNetify();
 #endif
 
+
                 app.UseStaticFiles();
-                app.UseMvc();
+
+                app.UseRouting();
+                app.UseAuthorization();
+                app.UseEndpoints(endpoints =>
+                {
+                    endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
+                    //endpoints.MapControllers()
+                });
+
                 app.Run(async (context) =>
                 {
                     using (var reader = new StreamReader(File.OpenRead("wwwroot/index.html")))
